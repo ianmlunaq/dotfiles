@@ -1,0 +1,12 @@
+[user]
+	name = Ian Luna Quiroz
+	email = ianmlunaq@gmail.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[color]
+	ui = auto
+[core]
+	excludesfile = ~/.gitignore_global
