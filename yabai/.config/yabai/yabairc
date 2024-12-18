@@ -6,6 +6,9 @@ sudo yabai --load-sa
 
 # .. more yabai startup stuff
 
+# float system preferences
+yabai -m rule --add app="^Calculator$" manage=off
+
 # bsp or float or stack (default: float)
 yabai -m config layout bsp
 

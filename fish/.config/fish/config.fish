@@ -3,7 +3,36 @@ if status is-interactive
 end
 
 function fish_prompt
-    string join '' -- (set_color cyan) '󰈺  ' (set_color green --bold) (path basename -- (prompt_pwd)) (set_color normal) ' '
+    #string join '' -- (set_color green --bold) '❯' (set_color cyan --bold) (path basename -- (prompt_pwd)) (set_color normal) ' '
+    set -l last_status $status
+                 set -l normal (set_color normal)
+                 set -l status_color (set_color brgreen)
+                 set -l cwd_color (set_color brcyan)
+                 set -l vcs_color (set_color brpurple)
+                 set -l prompt_status ""
+
+                 # Since we display the prompt on a new line allow the directory names to be longer.
+                 set -q fish_prompt_pwd_dir_length
+                 or set -lx fish_prompt_pwd_dir_length 0
+
+                 # Color the prompt differently when we're root
+                 set -l suffix '❯'
+                 if functions -q fish_is_root_user; and fish_is_root_user
+                     if set -q fish_color_cwd_root
+                         set cwd_color (set_color $fish_color_cwd_root)
+                     end
+                     set suffix '#'
+                 end
+
+                 # Color the prompt in red on error
+                 if test $last_status -ne 0
+                     set status_color (set_color $fish_color_error)
+                     set prompt_status $status_color "[" $last_status "]" $normal
+                 end
+
+ 		 echo
+                 string join '' -- $cwd_color (prompt_pwd) $vcs_color (fish_vcs_prompt) $normal ' ' $prompt_status
+                 echo -n -s $status_color $suffix ' ' $normal
 end
 
 function fish_greeting
@@ -67,3 +96,4 @@ alias nano='nano -lqm'
 alias kssh='kitten ssh'
 alias a2c='aria2c --conf-path=$HOME/.config/aria2c/aria2.conf'
 alias vcs='vcs -C ~/.config/vcs/vcs.conf'
+alias flac2opus='/Users/ianmlq/Documents/dev/flac2opus.rb'
