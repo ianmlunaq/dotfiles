@@ -7,6 +7,7 @@
     "code-runner.enableAppInsights": false,
     "code-runner.executorMap": {
         
+        
 
     
 
@@ -118,5 +119,19 @@
     ],
     "editor.fontLigatures": true,
     "diffEditor.ignoreTrimWhitespace": false,
-    "terminal.integrated.fontLigatures": true
+    "terminal.integrated.fontLigatures": true,
+    "java.completion.favoriteStaticMembers": [
+
+        "org.junit.Assert.*",
+        "org.junit.Assume.*",
+        "org.junit.jupiter.api.Assertions.*",
+        "org.junit.jupiter.api.Assumptions.*",
+        "org.junit.jupiter.api.DynamicContainer.*",
+        "org.junit.jupiter.api.DynamicTest.*",
+        "org.mockito.Mockito.*",
+        "org.mockito.ArgumentMatchers.*",
+        "org.mockito.Answers.*"
+    ],
+    "database-client.autoSync": true,
+    "chat.commandCenter.enabled": false
 }
