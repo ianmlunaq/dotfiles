@@ -31,7 +31,7 @@ function fish_prompt
                  end
 
  		 echo
-                 string join '' -- $cwd_color (prompt_pwd) $vcs_color (fish_vcs_prompt) $normal ' ' $prompt_status
+                 string join '' -- $cwd_color '[' (hostname) ']:' (prompt_pwd) $vcs_color (fish_vcs_prompt) $normal ' ' $prompt_status
                  echo -n -s $status_color $suffix ' ' $normal
 end
 
